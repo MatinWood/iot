@@ -1,0 +1,15 @@
+[Unit]
+Description=blinker iot service
+After=network.target
+# /lib/systemd/system/blinker.service
+
+[Service]
+Type=simple
+PIDFile=/run/blinker.pid
+EnvironmentFile=/etc/blinker
+ExecStart=/root/projects/iot/bin/run_blinker.sh
+ExecReload=/bin/kill -SIGHUP $MAINPID
+ExecStop=/bin/kill -SIGINT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
