@@ -30,7 +30,7 @@ def setStep(a, b, c, d):
     wiringpi.digitalWrite(pin4, d)
 
 
-def clockwize(delay_ms):
+def clockwise(delay_ms):
     setStep(GPIO.HIGH, GPIO.LOW, GPIO.LOW, GPIO.HIGH)
     wiringpi.delay(delay_ms)
     setStep(GPIO.LOW, GPIO.LOW, GPIO.HIGH, GPIO.HIGH)
@@ -41,7 +41,7 @@ def clockwize(delay_ms):
     wiringpi.delay(delay_ms)
 
 
-def rclockwize(delay_ms):
+def rclockwise(delay_ms):
     setStep(GPIO.HIGH, GPIO.HIGH, GPIO.LOW, GPIO.LOW)
     wiringpi.delay(delay_ms)
     setStep(GPIO.LOW, GPIO.HIGH, GPIO.HIGH, GPIO.LOW)
@@ -56,8 +56,24 @@ def stop():
     setStep(GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW)
 
 
+def clock_1_round():
+    print('clock_1_round')
+    init()
+    for i in range(500):
+        clockwise(10)
+    stop()
+
+
+def rclock_1_round():
+    print('rclock_1_round')
+    init()
+    for i in range(500):
+        rclockwise(10)
+    stop()
+
+
 if __name__ == '__main__':
     init()
     for i in range(500):
-        clockwize(10)
+        clockwise(10)
     stop()
